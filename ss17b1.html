@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Tết</title>
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        .box {
+            width: 360px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 10px;
+        }
+
+        .top {
+            background: #d32f2f;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .bottom {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <div class="top">
+            <h2>Công Việc Chuẩn Bị Tết</h2>
+        </div>
+
+        <div id="taskArea"></div>
+
+        <div class="bottom">
+            <p>Dữ liệu được lưu vào localStorage. Hãy refresh trang để kiểm tra.</p>
+        </div>
+
+    </div>
+
+    <script>
+        const taskList = [
+            { id: 1, name: "Mua bánh chưng", status: false },
+            { id: 2, name: "Dọn dẹp nhà cửa", status: false },
+            { id: 3, name: "Gói bánh chưng", status: false },
+            { id: 4, name: "Trang trí nhà", status: false }
+        ];
+
+        const taskContainer = document.getElementById("taskArea");
+
+        function showTasks() {
+            taskList.forEach(job => {
+                taskContainer.innerHTML += `
+                <ul>
+                    <li>${job.name} - Chưa hoàn thành</li>
+                </ul>
+                `;
+            });
+        }
+
+        function saveDataFirst() {
+            if (!localStorage.getItem("tetTasks")) {
+                localStorage.setItem("tetTasks", JSON.stringify(taskList));
+            }
+        }
+
+        showTasks();
+        saveDataFirst();
+    </script>
+
+</body>
+
+</html>
